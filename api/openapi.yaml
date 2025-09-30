@@ -1,0 +1,2578 @@
+---
+components:
+  responses: {}
+  schemas:
+    AcceptedResponse:
+      title: AcceptedResponse
+      x-struct:
+      x-validate:
+    AccessToken:
+      properties:
+        description:
+          type: string
+          x-struct:
+          x-validate:
+        id:
+          type: integer
+          x-struct:
+          x-validate:
+        inserted_at:
+          format: date-time
+          type: string
+          x-struct:
+          x-validate:
+        scopes:
+          type: string
+          x-struct:
+          x-validate:
+        token:
+          type: string
+          x-struct:
+          x-validate:
+      title: AccessToken
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.AccessToken
+      x-validate:
+    AccessTokenListResponse:
+      items:
+        $ref: '#/components/schemas/AccessToken'
+      title: AccessTokenListResponse
+      type: array
+      x-struct:
+      x-validate:
+    BackendApiSchema:
+      properties:
+        config:
+          type: object
+          x-struct:
+          x-validate:
+        default_ingest?:
+          type: boolean
+          x-struct:
+          x-validate:
+        id:
+          type: integer
+          x-struct:
+          x-validate:
+        inserted_at:
+          format: date-time
+          type: string
+          x-struct:
+          x-validate:
+        metadata:
+          type: object
+          x-struct:
+          x-validate:
+        name:
+          type: string
+          x-struct:
+          x-validate:
+        token:
+          type: string
+          x-struct:
+          x-validate:
+        updated_at:
+          format: date-time
+          type: string
+          x-struct:
+          x-validate:
+      required:
+        - name
+      title: BackendApiSchema
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.BackendApiSchema
+      x-validate:
+    BackendApiSchemaListResponse:
+      items:
+        $ref: '#/components/schemas/BackendApiSchema'
+      title: BackendApiSchemaListResponse
+      type: array
+      x-struct:
+      x-validate:
+    BadRequest:
+      title: BadRequest
+      x-struct: Elixir.LogflareWeb.OpenApi.BadRequest
+      x-validate:
+    EndpointApiSchema:
+      properties:
+        cache_duration_seconds:
+          type: integer
+          x-struct:
+          x-validate:
+        description:
+          nullable: true
+          type: string
+          x-struct:
+          x-validate:
+        enable_auth:
+          type: boolean
+          x-struct:
+          x-validate:
+        id:
+          type: integer
+          x-struct:
+          x-validate:
+        max_limit:
+          type: integer
+          x-struct:
+          x-validate:
+        name:
+          type: string
+          x-struct:
+          x-validate:
+        proactive_requerying_seconds:
+          type: integer
+          x-struct:
+          x-validate:
+        query:
+          type: string
+          x-struct:
+          x-validate:
+        sandboxable:
+          nullable: true
+          type: boolean
+          x-struct:
+          x-validate:
+        source_mapping:
+          nullable: true
+          type: object
+          x-struct:
+          x-validate:
+        token:
+          type: string
+          x-struct:
+          x-validate:
+      required:
+        - name
+        - query
+      title: EndpointApiSchema
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.EndpointApiSchema
+      x-validate:
+    EndpointApiSchemaListResponse:
+      items:
+        $ref: '#/components/schemas/EndpointApiSchema'
+      title: EndpointApiSchemaListResponse
+      type: array
+      x-struct:
+      x-validate:
+    EndpointQuery:
+      properties:
+        error:
+          oneOf:
+            - type: object
+              x-struct:
+              x-validate:
+            - type: string
+              x-struct:
+              x-validate:
+          x-struct:
+          x-validate:
+        result:
+          items:
+            type: object
+            x-struct:
+            x-validate:
+          type: array
+          x-struct:
+          x-validate:
+      title: EndpointQuery
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.EndpointQuery
+      x-validate:
+    Event:
+      properties:
+        event_message:
+          type: string
+          x-struct:
+          x-validate:
+        timestamp:
+          type: integer
+          x-struct:
+          x-validate:
+      title: Event
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.Event
+      x-validate:
+    EventListResponse:
+      items:
+        $ref: '#/components/schemas/Event'
+      title: EventListResponse
+      type: array
+      x-struct:
+      x-validate:
+    LogsCreated:
+      properties:
+        message:
+          example: Logged!
+          type: string
+          x-struct:
+          x-validate:
+      title: LogsCreated
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.LogsCreated
+      x-validate:
+    NotFoundResponse:
+      properties:
+        error:
+          type: string
+          x-struct:
+          x-validate:
+      required:
+        - error
+      title: NotFoundResponse
+      type: object
+      x-struct:
+      x-validate:
+    Notification:
+      properties:
+        other_email_notifications:
+          type: string
+          x-struct:
+          x-validate:
+        team_user_ids_for_email:
+          items:
+            type: string
+            x-struct:
+            x-validate:
+          type: array
+          x-struct:
+          x-validate:
+        team_user_ids_for_schema_updates:
+          items:
+            type: string
+            x-struct:
+            x-validate:
+          type: array
+          x-struct:
+          x-validate:
+        team_user_ids_for_sms:
+          items:
+            type: string
+            x-struct:
+            x-validate:
+          type: array
+          x-struct:
+          x-validate:
+        user_email_notifications:
+          type: boolean
+          x-struct:
+          x-validate:
+        user_schema_update_notifications:
+          type: boolean
+          x-struct:
+          x-validate:
+        user_text_notifications:
+          type: boolean
+          x-struct:
+          x-validate:
+      title: Notification
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.Notification
+      x-validate:
+    QueryParseResult:
+      properties:
+        errors:
+          oneOf:
+            - type: object
+              x-struct:
+              x-validate:
+            - type: string
+              x-struct:
+              x-validate:
+          x-struct:
+          x-validate:
+        result:
+          type: object
+          x-struct:
+          x-validate:
+      required:
+        - result
+      title: QueryParseResult
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.QueryParseResult
+      x-validate:
+    QueryResult:
+      properties:
+        errors:
+          oneOf:
+            - type: object
+              x-struct:
+              x-validate:
+            - type: string
+              x-struct:
+              x-validate:
+          x-struct:
+          x-validate:
+        result:
+          type: object
+          x-struct:
+          x-validate:
+      required:
+        - result
+      title: QueryResult
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.QueryResult
+      x-validate:
+    QueryResultListResponse:
+      items:
+        $ref: '#/components/schemas/QueryResult'
+      title: QueryResultListResponse
+      type: array
+      x-struct:
+      x-validate:
+    RuleApiSchema:
+      properties:
+        backend_id:
+          type: integer
+          x-struct:
+          x-validate:
+        id:
+          type: integer
+          x-struct:
+          x-validate:
+        inserted_at:
+          format: date-time
+          type: string
+          x-struct:
+          x-validate:
+        lql_string:
+          type: string
+          x-struct:
+          x-validate:
+        source_id:
+          type: integer
+          x-struct:
+          x-validate:
+        token:
+          type: string
+          x-struct:
+          x-validate:
+        updated_at:
+          format: date-time
+          type: string
+          x-struct:
+          x-validate:
+      required:
+        - name
+      title: RuleApiSchema
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.RuleApiSchema
+      x-validate:
+    RuleApiSchemaListResponse:
+      items:
+        $ref: '#/components/schemas/RuleApiSchema'
+      title: RuleApiSchemaListResponse
+      type: array
+      x-struct:
+      x-validate:
+    ServerError:
+      title: ServerError
+      x-struct: Elixir.LogflareWeb.OpenApi.ServerError
+      x-validate:
+    Source:
+      properties:
+        api_quota:
+          type: integer
+          x-struct:
+          x-validate:
+        bigquery_table_ttl:
+          type: integer
+          x-struct:
+          x-validate:
+        bq_table_id:
+          type: string
+          x-struct:
+          x-validate:
+        custom_event_message_keys:
+          type: string
+          x-struct:
+          x-validate:
+        default_ingest_backend_enabled?:
+          type: boolean
+          x-struct:
+          x-validate:
+        favorite:
+          type: boolean
+          x-struct:
+          x-validate:
+        has_rejected_events:
+          type: boolean
+          x-struct:
+          x-validate:
+        id:
+          x-struct:
+          x-validate:
+        inserted_at:
+          format: date-time
+          type: string
+          x-struct:
+          x-validate:
+        metrics:
+          type: object
+          x-struct:
+          x-validate:
+        name:
+          type: string
+          x-struct:
+          x-validate:
+        notifications:
+          items:
+            $ref: '#/components/schemas/Notification'
+          type: array
+          x-struct:
+          x-validate:
+        public_token:
+          type: string
+          x-struct:
+          x-validate:
+        slack_hook_url:
+          type: string
+          x-struct:
+          x-validate:
+        token:
+          type: string
+          x-struct:
+          x-validate:
+        updated_at:
+          format: date-time
+          type: string
+          x-struct:
+          x-validate:
+        webhook_notification_url:
+          type: string
+          x-struct:
+          x-validate:
+      required:
+        - name
+      title: Source
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.Source
+      x-validate:
+    SourceListResponse:
+      items:
+        $ref: '#/components/schemas/Source'
+      title: SourceListResponse
+      type: array
+      x-struct:
+      x-validate:
+    SourceSchema:
+      properties: {}
+      title: SourceSchema
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.SourceSchema
+      x-validate:
+    Team:
+      properties:
+        name:
+          type: string
+          x-struct:
+          x-validate:
+        team_users:
+          items:
+            $ref: '#/components/schemas/TeamUser'
+          type: array
+          x-struct:
+          x-validate:
+        token:
+          type: string
+          x-struct:
+          x-validate:
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+        - name
+      title: Team
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.Team
+      x-validate:
+    TeamListResponse:
+      items:
+        $ref: '#/components/schemas/Team'
+      title: TeamListResponse
+      type: array
+      x-struct:
+      x-validate:
+    TeamUser:
+      properties:
+        email:
+          type: string
+          x-struct:
+          x-validate:
+        name:
+          type: string
+          x-struct:
+          x-validate:
+      required:
+        - email
+        - name
+      title: TeamUser
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.TeamUser
+      x-validate:
+    Unauthorized:
+      title: Unauthorized
+      x-struct: Elixir.LogflareWeb.OpenApi.Unauthorized
+      x-validate:
+    UnprocessableEntityResponse:
+      properties:
+        errors:
+          type: object
+          x-struct:
+          x-validate:
+      required:
+        - errors
+      title: UnprocessableEntityResponse
+      type: object
+      x-struct:
+      x-validate:
+    User:
+      properties:
+        api_key:
+          type: string
+          x-struct:
+          x-validate:
+        api_quota:
+          type: integer
+          x-struct:
+          x-validate:
+        bigquery_dataset_id:
+          nullable: true
+          type: string
+          x-struct:
+          x-validate:
+        bigquery_dataset_location:
+          nullable: true
+          type: string
+          x-struct:
+          x-validate:
+        bigquery_project_id:
+          nullable: true
+          type: string
+          x-struct:
+          x-validate:
+        company:
+          nullable: true
+          type: string
+          x-struct:
+          x-validate:
+        email:
+          type: string
+          x-struct:
+          x-validate:
+        email_me_product:
+          type: boolean
+          x-struct:
+          x-validate:
+        email_preferred:
+          type: string
+          x-struct:
+          x-validate:
+        image:
+          nullable: true
+          type: string
+          x-struct:
+          x-validate:
+        name:
+          type: string
+          x-struct:
+          x-validate:
+        phone:
+          nullable: true
+          type: string
+          x-struct:
+          x-validate:
+        provider:
+          type: string
+          x-struct:
+          x-validate:
+        token:
+          type: string
+          x-struct:
+          x-validate:
+      required:
+        - email
+        - provider
+        - token
+        - api_key
+      title: User
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.User
+      x-validate:
+  securitySchemes:
+    authorization:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+info:
+  title: logflare
+  version: 1.22.1
+openapi: 3.0.0
+paths:
+  /api/access-tokens:
+    get:
+      callbacks: {}
+      operationId: LogflareWeb.Api.AccessTokenController.index
+      parameters: []
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AccessToken'
+                title: AccessTokenListResponse
+                type: array
+                x-struct:
+                x-validate:
+          description: AccessToken List Response
+      summary: List access tokens
+      tags:
+        - management
+    post:
+      callbacks: {}
+      operationId: LogflareWeb.Api.AccessTokenController.create
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccessToken'
+        description: AccessToken Parameters
+        required: false
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessToken'
+          description: Created Response
+        401:
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Create source
+      tags:
+        - management
+  /api/access-tokens/{token}:
+    delete:
+      callbacks: {}
+      operationId: LogflareWeb.Api.AccessTokenController.delete
+      parameters:
+        - description: Access Token
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        204:
+          content:
+            text/plain:
+              schema:
+                title: AcceptedResponse
+                x-struct:
+                x-validate:
+          description: Accepted Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Delete access token
+      tags:
+        - management
+  /api/backends:
+    get:
+      callbacks: {}
+      operationId: LogflareWeb.Api.BackendController.index
+      parameters: []
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BackendApiSchema'
+                title: BackendApiSchemaListResponse
+                type: array
+                x-struct:
+                x-validate:
+          description: BackendApiSchema List Response
+      summary: List backends. Default managed backends are not included.
+      tags:
+        - management
+    post:
+      callbacks: {}
+      operationId: LogflareWeb.Api.BackendController.create
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BackendApiSchema'
+        description: BackendApiSchema Parameters
+        required: false
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BackendApiSchema'
+          description: Created Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Create backend
+      tags:
+        - management
+  /api/backends/{token}:
+    delete:
+      callbacks: {}
+      operationId: LogflareWeb.Api.BackendController.delete
+      parameters:
+        - description: Backend Token
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        204:
+          content:
+            text/plain:
+              schema:
+                title: AcceptedResponse
+                x-struct:
+                x-validate:
+          description: Accepted Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Delete backend
+      tags:
+        - management
+    get:
+      callbacks: {}
+      operationId: LogflareWeb.Api.BackendController.show
+      parameters:
+        - description: Backend token
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BackendApiSchema'
+          description: BackendApiSchema Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Fetch backend
+      tags:
+        - management
+    patch:
+      callbacks: {}
+      operationId: LogflareWeb.Api.BackendController.update (2)
+      parameters:
+        - description: Backend Token
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BackendApiSchema'
+        description: BackendApiSchema Parameters
+        required: false
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BackendApiSchema'
+          description: Accepted Response
+        204:
+          content:
+            text/plain:
+              schema:
+                title: AcceptedResponse
+                x-struct:
+                x-validate:
+          description: Accepted Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Update backend
+      tags:
+        - management
+    put:
+      callbacks: {}
+      operationId: LogflareWeb.Api.BackendController.update
+      parameters:
+        - description: Backend Token
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BackendApiSchema'
+        description: BackendApiSchema Parameters
+        required: false
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BackendApiSchema'
+          description: Accepted Response
+        204:
+          content:
+            text/plain:
+              schema:
+                title: AcceptedResponse
+                x-struct:
+                x-validate:
+          description: Accepted Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Update backend
+      tags:
+        - management
+  /api/endpoints:
+    get:
+      callbacks: {}
+      operationId: LogflareWeb.Api.EndpointController.index
+      parameters: []
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/EndpointApiSchema'
+                title: EndpointApiSchemaListResponse
+                type: array
+                x-struct:
+                x-validate:
+          description: EndpointApiSchema List Response
+      summary: List endpoints
+      tags:
+        - management
+    post:
+      callbacks: {}
+      operationId: LogflareWeb.Api.EndpointController.create
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EndpointApiSchema'
+        description: EndpointApiSchema Parameters
+        required: false
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointApiSchema'
+          description: Created Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+        422:
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: object
+                    x-struct:
+                    x-validate:
+                required:
+                  - errors
+                title: UnprocessableEntityResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Unprocessable Entity
+      summary: Create endpoint
+      tags:
+        - management
+  /api/endpoints/query/name/{name}:
+    get:
+      callbacks: {}
+      description: Full details are available in the [Logflare Endpoints documentation](https://docs.logflare.app/concepts/endpoints/)
+      operationId: LogflareWeb.EndpointsController.query
+      parameters:
+        - description: Endpoint UUID or name
+          example: a040ae88-3e27-448b-9ee6-622278b23193
+          in: path
+          name: name
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointQuery'
+          description: EndpointQuery Response
+        401:
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        500:
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+          description: Server error
+      summary: Query a Logflare Endpoint
+      tags:
+        - Public
+  /api/endpoints/query/{token_or_name}:
+    get:
+      callbacks: {}
+      description: Full details are available in the [Logflare Endpoints documentation](https://docs.logflare.app/concepts/endpoints/)
+      operationId: LogflareWeb.EndpointsController.query (2)
+      parameters:
+        - description: Endpoint UUID or name
+          example: a040ae88-3e27-448b-9ee6-622278b23193
+          in: path
+          name: token_or_name
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointQuery'
+          description: EndpointQuery Response
+        401:
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        500:
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+          description: Server error
+      summary: Query a Logflare Endpoint
+      tags:
+        - Public
+    post:
+      callbacks: {}
+      description: Full details are available in the [Logflare Endpoints documentation](https://docs.logflare.app/concepts/endpoints/)
+      operationId: LogflareWeb.EndpointsController.query (3)
+      parameters:
+        - description: Endpoint UUID or name
+          example: a040ae88-3e27-448b-9ee6-622278b23193
+          in: path
+          name: token_or_name
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointQuery'
+          description: EndpointQuery Response
+        401:
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        500:
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+          description: Server error
+      summary: Query a Logflare Endpoint
+      tags:
+        - Public
+  /api/endpoints/{token}:
+    delete:
+      callbacks: {}
+      operationId: LogflareWeb.Api.EndpointController.delete
+      parameters:
+        - description: Endpoint UUID Token
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        204:
+          content:
+            text/plain:
+              schema:
+                title: AcceptedResponse
+                x-struct:
+                x-validate:
+          description: Accepted Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Delete endpoint
+      tags:
+        - management
+        - management
+    get:
+      callbacks: {}
+      operationId: LogflareWeb.Api.EndpointController.show
+      parameters:
+        - description: Endpoint UUID Token
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointApiSchema'
+          description: EndpointApiSchema Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Fetch endpoint
+      tags:
+        - management
+    patch:
+      callbacks: {}
+      operationId: LogflareWeb.Api.EndpointController.update (2)
+      parameters:
+        - description: Endpoint UUID Token
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EndpointApiSchema'
+        description: EndpointApiSchema Parameters
+        required: false
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointApiSchema'
+          description: Accepted Response
+        204:
+          content:
+            text/plain:
+              schema:
+                title: AcceptedResponse
+                x-struct:
+                x-validate:
+          description: Accepted Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+        422:
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: object
+                    x-struct:
+                    x-validate:
+                required:
+                  - errors
+                title: UnprocessableEntityResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Unprocessable Entity
+      summary: Update endpoint
+      tags:
+        - management
+    put:
+      callbacks: {}
+      operationId: LogflareWeb.Api.EndpointController.update
+      parameters:
+        - description: Endpoint UUID Token
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EndpointApiSchema'
+        description: EndpointApiSchema Parameters
+        required: false
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointApiSchema'
+          description: Accepted Response
+        204:
+          content:
+            text/plain:
+              schema:
+                title: AcceptedResponse
+                x-struct:
+                x-validate:
+          description: Accepted Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+        422:
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: object
+                    x-struct:
+                    x-validate:
+                required:
+                  - errors
+                title: UnprocessableEntityResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Unprocessable Entity
+      summary: Update endpoint
+      tags:
+        - management
+  /api/events:
+    options:
+      callbacks: {}
+      description: Full details are available in the [ingestion documentation](https://docs.logflare.app/concepts/ingestion/)
+      operationId: LogflareWeb.LogController.create
+      parameters:
+        - description: Source UUID
+          example: a040ae88-3e27-448b-9ee6-622278b23193
+          in: query
+          name: source
+          required: false
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+        - description: Source name
+          example: MyApp.MySource
+          in: query
+          name: source_name
+          required: false
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogsCreated'
+          description: Created Response
+        500:
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+          description: Server error
+      summary: Create log event
+      tags:
+        - Public
+    post:
+      callbacks: {}
+      description: Full details are available in the [ingestion documentation](https://docs.logflare.app/concepts/ingestion/)
+      operationId: LogflareWeb.LogController.create (2)
+      parameters:
+        - description: Source UUID
+          example: a040ae88-3e27-448b-9ee6-622278b23193
+          in: query
+          name: source
+          required: false
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+        - description: Source name
+          example: MyApp.MySource
+          in: query
+          name: source_name
+          required: false
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogsCreated'
+          description: Created Response
+        500:
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+          description: Server error
+      summary: Create log event
+      tags:
+        - Public
+  /api/logs:
+    options:
+      callbacks: {}
+      description: Full details are available in the [ingestion documentation](https://docs.logflare.app/concepts/ingestion/)
+      operationId: LogflareWeb.LogController.create (3)
+      parameters:
+        - description: Source UUID
+          example: a040ae88-3e27-448b-9ee6-622278b23193
+          in: query
+          name: source
+          required: false
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+        - description: Source name
+          example: MyApp.MySource
+          in: query
+          name: source_name
+          required: false
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogsCreated'
+          description: Created Response
+        500:
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+          description: Server error
+      summary: Create log event
+      tags:
+        - Public
+    post:
+      callbacks: {}
+      description: Full details are available in the [ingestion documentation](https://docs.logflare.app/concepts/ingestion/)
+      operationId: LogflareWeb.LogController.create (4)
+      parameters:
+        - description: Source UUID
+          example: a040ae88-3e27-448b-9ee6-622278b23193
+          in: query
+          name: source
+          required: false
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+        - description: Source name
+          example: MyApp.MySource
+          in: query
+          name: source_name
+          required: false
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogsCreated'
+          description: Created Response
+        500:
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+          description: Server error
+      summary: Create log event
+      tags:
+        - Public
+  /api/query:
+    get:
+      callbacks: {}
+      operationId: LogflareWeb.Api.QueryController.query
+      parameters:
+        - description: BigQuery SQL string, alias for bq_sql
+          in: query
+          name: sql
+          required: false
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+        - description: BigQuery SQL string
+          example: select current_timestamp() as 'test'
+          in: query
+          name: bq_sql
+          required: false
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+        - description: ClickHouse SQL string
+          example: select now() as 'test'
+          in: query
+          name: ch_sql
+          required: false
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+        - description: PostgresSQL string
+          example: select current_date() as 'test'
+          in: query
+          name: pg_sql
+          required: false
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/QueryResult'
+                title: QueryResultListResponse
+                type: array
+                x-struct:
+                x-validate:
+          description: QueryResult List Response
+      summary: Execute a query
+      tags:
+        - management
+  /api/query/parse:
+    get:
+      callbacks: {}
+      operationId: LogflareWeb.Api.QueryController.parse
+      parameters:
+        - allowEmptyValue: true
+          description: BigQuery SQL string, alias for bq_sql
+          in: query
+          name: sql
+          required: false
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+        - description: BigQuery SQL string
+          example: select current_timestamp() as 'test'
+          in: query
+          name: bq_sql
+          required: false
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+        - description: ClickHouse SQL string
+          example: select now() as 'test'
+          in: query
+          name: ch_sql
+          required: false
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryParseResult'
+          description: QueryParseResult One Response
+        400:
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+      summary: Parses a query
+      tags:
+        - management
+  /api/rules:
+    get:
+      callbacks: {}
+      operationId: LogflareWeb.Api.RuleController.index
+      parameters: []
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/RuleApiSchema'
+                title: RuleApiSchemaListResponse
+                type: array
+                x-struct:
+                x-validate:
+          description: RuleApiSchema List Response
+      summary: List rules
+      tags:
+        - management
+    post:
+      callbacks: {}
+      operationId: LogflareWeb.Api.RuleController.create
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RuleApiSchema'
+        description: RuleApiSchema Parameters
+        required: false
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuleApiSchema'
+          description: Created Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Create rule. Allows batch creation if as a list.
+      tags:
+        - management
+  /api/rules/{token}:
+    delete:
+      callbacks: {}
+      operationId: LogflareWeb.Api.RuleController.delete
+      parameters:
+        - description: Rule UUID
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        204:
+          content:
+            text/plain:
+              schema:
+                title: AcceptedResponse
+                x-struct:
+                x-validate:
+          description: Accepted Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Delete rule
+      tags:
+        - management
+    get:
+      callbacks: {}
+      operationId: LogflareWeb.Api.RuleController.show
+      parameters:
+        - description: Rule UUID
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuleApiSchema'
+          description: RuleApiSchema Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Fetch rule
+      tags:
+        - management
+    patch:
+      callbacks: {}
+      operationId: LogflareWeb.Api.RuleController.update (2)
+      parameters:
+        - description: Rule UUID
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RuleApiSchema'
+        description: RuleApiSchema Parameters
+        required: false
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuleApiSchema'
+          description: Accepted Response
+        204:
+          content:
+            text/plain:
+              schema:
+                title: AcceptedResponse
+                x-struct:
+                x-validate:
+          description: Accepted Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Update rule
+      tags:
+        - management
+    put:
+      callbacks: {}
+      operationId: LogflareWeb.Api.RuleController.update
+      parameters:
+        - description: Rule UUID
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RuleApiSchema'
+        description: RuleApiSchema Parameters
+        required: false
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuleApiSchema'
+          description: Accepted Response
+        204:
+          content:
+            text/plain:
+              schema:
+                title: AcceptedResponse
+                x-struct:
+                x-validate:
+          description: Accepted Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Update rule
+      tags:
+        - management
+  /api/sources:
+    get:
+      callbacks: {}
+      operationId: LogflareWeb.Api.SourceController.index
+      parameters: []
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Source'
+                title: SourceListResponse
+                type: array
+                x-struct:
+                x-validate:
+          description: Source List Response
+      summary: List sources
+      tags:
+        - management
+    post:
+      callbacks: {}
+      operationId: LogflareWeb.Api.SourceController.create
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Source'
+        description: Source Parameters
+        required: false
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+          description: Created Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Create source
+      tags:
+        - management
+  /api/sources/{source_token}/backends/{backend_token}:
+    delete:
+      callbacks: {}
+      operationId: LogflareWeb.Api.SourceController.remove_backend
+      parameters:
+        - description: Source Token
+          in: path
+          name: source_token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+        - description: Backend Token
+          in: path
+          name: backend_token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+          description: Source Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Remove source backend
+      tags:
+        - management
+    post:
+      callbacks: {}
+      operationId: LogflareWeb.Api.SourceController.add_backend
+      parameters:
+        - description: Source Token
+          in: path
+          name: source_token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+        - description: Backend Token
+          in: path
+          name: backend_token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+          description: Source Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Add source backend
+      tags:
+        - management
+  /api/sources/{source_token}/recent:
+    get:
+      callbacks: {}
+      operationId: LogflareWeb.Api.SourceController.recent
+      parameters:
+        - description: Source Token
+          in: path
+          name: source_token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Event'
+                title: EventListResponse
+                type: array
+                x-struct:
+                x-validate:
+          description: Event List Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Recent events in a source
+      tags:
+        - management
+  /api/sources/{source_token}/schema:
+    get:
+      callbacks: {}
+      operationId: LogflareWeb.Api.SourceController.show_schema
+      parameters:
+        - description: Source Token
+          in: path
+          name: source_token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SourceSchema'
+          description: SourceSchema Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Show source schema
+      tags:
+        - management
+  /api/sources/{token}:
+    delete:
+      callbacks: {}
+      operationId: LogflareWeb.Api.SourceController.delete
+      parameters:
+        - description: Source Token
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        204:
+          content:
+            text/plain:
+              schema:
+                title: AcceptedResponse
+                x-struct:
+                x-validate:
+          description: Accepted Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Delete source
+      tags:
+        - management
+    get:
+      callbacks: {}
+      operationId: LogflareWeb.Api.SourceController.show
+      parameters:
+        - description: Source Token
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+          description: Source Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Fetch source
+      tags:
+        - management
+    patch:
+      callbacks: {}
+      operationId: LogflareWeb.Api.SourceController.update (2)
+      parameters:
+        - description: Source Token
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Source'
+        description: Source Parameters
+        required: false
+      responses:
+        200:
+          content:
+            text/plain:
+              schema:
+                title: AcceptedResponse
+                x-struct:
+                x-validate:
+          description: Accepted Response
+        204:
+          content:
+            text/plain:
+              schema:
+                title: AcceptedResponse
+                x-struct:
+                x-validate:
+          description: Accepted Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Update source
+      tags:
+        - management
+    put:
+      callbacks: {}
+      operationId: LogflareWeb.Api.SourceController.update
+      parameters:
+        - description: Source Token
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Source'
+        description: Source Parameters
+        required: false
+      responses:
+        200:
+          content:
+            text/plain:
+              schema:
+                title: AcceptedResponse
+                x-struct:
+                x-validate:
+          description: Accepted Response
+        204:
+          content:
+            text/plain:
+              schema:
+                title: AcceptedResponse
+                x-struct:
+                x-validate:
+          description: Accepted Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Update source
+      tags:
+        - management
+  /api/teams:
+    get:
+      callbacks: {}
+      operationId: LogflareWeb.Api.TeamController.index
+      parameters: []
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Team'
+                title: TeamListResponse
+                type: array
+                x-struct:
+                x-validate:
+          description: Team List Response
+      summary: List teams
+      tags:
+        - management
+    post:
+      callbacks: {}
+      operationId: LogflareWeb.Api.TeamController.create
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+        description: Team Parameters
+        required: false
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+          description: Created Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+        422:
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: object
+                    x-struct:
+                    x-validate:
+                required:
+                  - errors
+                title: UnprocessableEntityResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Unprocessable Entity
+      summary: Create Team
+      tags:
+        - management
+  /api/teams/{token}:
+    delete:
+      callbacks: {}
+      operationId: LogflareWeb.Api.TeamController.delete
+      parameters:
+        - description: Team Token
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        204:
+          content:
+            text/plain:
+              schema:
+                title: AcceptedResponse
+                x-struct:
+                x-validate:
+          description: Accepted Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Delete Team
+      tags:
+        - management
+    get:
+      callbacks: {}
+      operationId: LogflareWeb.Api.TeamController.show
+      parameters:
+        - description: Team Token
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+          description: Team Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Fetch team
+      tags:
+        - management
+    patch:
+      callbacks: {}
+      operationId: LogflareWeb.Api.TeamController.update (2)
+      parameters:
+        - description: Team Token
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+        description: Team Parameters
+        required: false
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+          description: Created Response
+        204:
+          content:
+            text/plain:
+              schema:
+                title: AcceptedResponse
+                x-struct:
+                x-validate:
+          description: Accepted Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+        422:
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: object
+                    x-struct:
+                    x-validate:
+                required:
+                  - errors
+                title: UnprocessableEntityResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Unprocessable Entity
+      summary: Update team
+      tags:
+        - management
+    put:
+      callbacks: {}
+      operationId: LogflareWeb.Api.TeamController.update
+      parameters:
+        - description: Team Token
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+        description: Team Parameters
+        required: false
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+          description: Created Response
+        204:
+          content:
+            text/plain:
+              schema:
+                title: AcceptedResponse
+                x-struct:
+                x-validate:
+          description: Accepted Response
+        404:
+          content:
+            text/plain:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+        422:
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: object
+                    x-struct:
+                    x-validate:
+                required:
+                  - errors
+                title: UnprocessableEntityResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Unprocessable Entity
+      summary: Update team
+      tags:
+        - management
+security: []
+servers:
+  - url: http://localhost:4000
+    variables: {}
+tags: []
