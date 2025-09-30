@@ -1,0 +1,53 @@
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: logflare_docker
+      POSTGRESQL_WAL_LEVEL: logical
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+  logflare:
+    image: supabase/logflare:1.22.3
+    ports:
+      - "4000:4000"
+    hostname: 127.0.0.1
+    environment:
+      - DB_DATABASE=logflare_docker
+      - DB_HOSTNAME=db
+      - DB_PORT=5432
+      - DB_PASSWORD=postgres
+      - DB_USERNAME=postgres
+      - DB_SCHEMA=public
+      - LOGFLARE_SINGLE_TENANT=true
+      - LOGFLARE_API_KEY=my-cool-api-key
+      - LOGFLARE_PRIVATE_ACCESS_TOKEN=my-cool-api-key-123
+      - LOGFLARE_PUBLIC_ACCESS_TOKEN=my-other-cool-api-key-123
+      - LOGFLARE_GRPC_PORT=50051
+
+      - LOGFLARE_NODE_HOST=127.0.0.1
+      - LOGFLARE_HTTP_CONNECTION_POOLS=all
+
+      # Required for BigQuery backend
+      - GOOGLE_DATASET_ID_APPEND=_your_env
+      - GOOGLE_PROJECT_ID=logflare-docker-example
+      - GOOGLE_PROJECT_NUMBER=123123123213
+
+      # Required for Postgres backend
+      - POSTGRES_BACKEND_URL=postgresql://postgres:postgres@localhost:5432/logflare_docker
+    # volumes:
+    #   - type: bind
+    #     source: ${PWD}/.env
+    #     target: /tmp/.secrets.env
+    #     read_only: true
+    #   - type: bind
+    #     source: ${PWD}/gcloud.json
+    #     target: /opt/app/rel/logflare/bin/gcloud.json
+    #     read_only: true
+    depends_on:
+      - db
+volumes:
+  pg-data:
