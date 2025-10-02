@@ -11,7 +11,7 @@ services:
     volumes:
       - pg-data:/var/lib/postgresql/data
   logflare:
-    image: supabase/logflare:1.22.3
+    image: supabase/logflare:dev-f14a1ec
     ports:
       - "4000:4000"
     hostname: 127.0.0.1
