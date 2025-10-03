@@ -80,11 +80,11 @@ jobs:
           terraform_wrapper: false
       - run: go mod download
       - name: setup logflare docker compose
-        run: docker-compose -f "docker_compose/docker-compose.yml" up -d
+        run: docker compose -f "docker_compose/docker-compose.yml" up -d
       - env:
           TF_ACC: "1"
         run: go test -v -cover ./internal/provider/
         timeout-minutes: 10
       - name: Stop containers
         if: always()
-        run: docker-compose -f "docker_compose/docker-compose.yml" down
+        run: docker compose -f "docker_compose/docker-compose.yml" down
