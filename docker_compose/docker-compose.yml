@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 services:
   db:
     image: postgres:15-alpine
@@ -11,7 +14,7 @@ services:
     volumes:
       - pg-data:/var/lib/postgresql/data
   logflare:
-    image: supabase/logflare:dev-f14a1ec
+    image: supabase/logflare:1.22.5
     ports:
       - "4000:4000"
     hostname: 127.0.0.1
@@ -37,7 +40,7 @@ services:
       - GOOGLE_PROJECT_NUMBER=123123123213
 
       # Required for Postgres backend
-      - POSTGRES_BACKEND_URL=postgresql://postgres:postgres@localhost:5432/logflare_docker
+      - POSTGRES_BACKEND_URL=postgresql://postgres:postgres@db:5432/logflare_docker
     # volumes:
     #   - type: bind
     #     source: ${PWD}/.env

@@ -1,1 +1,1 @@
-terraform import scaffolding_example.test "id-123"
+terraform import logflare_endpoint.example 123

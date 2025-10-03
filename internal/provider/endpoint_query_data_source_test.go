@@ -22,7 +22,7 @@ func TestAccEndpointsDataSource(t *testing.T) {
 				Check: resource.ComposeAggregateTestCheckFunc(
 					// Example result: {"result":[{"date":["2025-10-02"]}]}
 					resource.TestCheckResourceAttr("data.logflare_endpoint_query.test", "result.#", "1"),
-					resource.TestCheckResourceAttr("data.logflare_endpoint_query.test", "result.0.date.0", currentTime.Format(time.DateOnly)),
+					resource.TestCheckResourceAttr("data.logflare_endpoint_query.test", "result.0.date.0", currentTime.UTC().Format(time.DateOnly)),
 				),
 			},
 		},
