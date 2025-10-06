@@ -1,3 +1,6 @@
+// Copyright (c) HashiCorp, Inc.
+// SPDX-License-Identifier: MPL-2.0
+
 package provider
 
 import (
@@ -139,13 +142,15 @@ func (p *logflareProvider) Configure(ctx context.Context, req provider.Configure
 // DataSources defines the data sources implemented in the provider.
 func (p *logflareProvider) DataSources(_ context.Context) []func() datasource.DataSource {
 	return []func() datasource.DataSource{
-		NewEndpointsDataSource,
+		NewEndpointQueryDataSource,
 	}
 }
 
 // Resources defines the resources implemented in the provider.
 func (p *logflareProvider) Resources(_ context.Context) []func() resource.Resource {
-	return nil
+	return []func() resource.Resource{
+		NewEndpointResource,
+	}
 }
 
 func (p *logflareProvider) Functions(_ context.Context) []func() function.Function {

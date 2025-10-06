@@ -1,3 +1,4 @@
-resource "scaffolding_example" "example" {
-  configurable_attribute = "some-value"
+resource "logflare_endpoint" "example" {
+  name  = "my_cool_endpoint"
+  query = "select current_date as date"
 }
