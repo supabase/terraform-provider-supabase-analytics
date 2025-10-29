@@ -4,9 +4,10 @@
 package provider
 
 import (
-	"analytics-terraform-provider/internal/pkg/api"
 	"context"
 	"fmt"
+
+	"github.com/supabase/terraform-provider-supabase-analytics/internal/pkg/api"
 
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"

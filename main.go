@@ -8,7 +8,7 @@ import (
 	"flag"
 	"log"
 
-	"analytics-terraform-provider/internal/provider"
+	"github.com/supabase/terraform-provider-supabase-analytics/internal/provider"
 
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 )
