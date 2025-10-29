@@ -152,11 +152,11 @@ type Source struct {
 	DefaultIngestBackendEnabled *bool                   `json:"default_ingest_backend_enabled?,omitempty"`
 	Favorite                    *bool                   `json:"favorite,omitempty"`
 	HasRejectedEvents           *bool                   `json:"has_rejected_events,omitempty"`
-	Id                          interface{}             `json:"id,omitempty"`
+	Id                          *int                    `json:"id,omitempty"`
 	InsertedAt                  *time.Time              `json:"inserted_at,omitempty"`
 	Metrics                     *map[string]interface{} `json:"metrics,omitempty"`
 	Name                        string                  `json:"name"`
-	Notifications               *[]Notification         `json:"notifications,omitempty"`
+	Notifications               *map[string]interface{} `json:"notifications,omitempty"`
 	PublicToken                 *string                 `json:"public_token,omitempty"`
 	SlackHookUrl                *string                 `json:"slack_hook_url,omitempty"`
 	Token                       *string                 `json:"token,omitempty"`

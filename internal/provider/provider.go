@@ -4,10 +4,11 @@
 package provider
 
 import (
-	"analytics-terraform-provider/internal/pkg/api"
 	"context"
 	"net/http"
 	"os"
+
+	"github.com/supabase/terraform-provider-supabase-analytics/internal/pkg/api"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/function"
@@ -150,6 +151,7 @@ func (p *logflareProvider) DataSources(_ context.Context) []func() datasource.Da
 func (p *logflareProvider) Resources(_ context.Context) []func() resource.Resource {
 	return []func() resource.Resource{
 		NewEndpointResource,
+		NewSourceResource,
 	}
 }
 

@@ -404,6 +404,7 @@ components:
           x-struct:
           x-validate:
         id:
+          type: integer
           x-struct:
           x-validate:
         inserted_at:
@@ -422,7 +423,7 @@ components:
         notifications:
           items:
             $ref: '#/components/schemas/Notification'
-          type: array
+          type: object
           x-struct:
           x-validate:
         public_token:
@@ -609,7 +610,7 @@ components:
       type: http
 info:
   title: logflare
-  version: 1.22.1
+  version: 1.23.3
 openapi: 3.0.0
 paths:
   /api/access-tokens:
