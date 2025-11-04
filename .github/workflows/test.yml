@@ -83,7 +83,7 @@ jobs:
         run: docker compose -f "docker_compose/docker-compose.yml" up -d
       - env:
           TF_ACC: "1"
-        run: go test -v -cover ./internal/provider/
+        run: go test -v -cover ./provider/
         timeout-minutes: 10
       - name: Stop containers
         if: always()
