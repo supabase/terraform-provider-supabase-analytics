@@ -5,6 +5,604 @@
 components:
   responses: {}
   schemas:
+    AlertApiCreateParams:
+      properties:
+        backend_ids:
+          description: Complete replacement set of attached backend IDs
+          items:
+            minimum: 1
+            type: integer
+            x-struct:
+            x-validate:
+          type: array
+          x-struct:
+          x-validate:
+        category:
+          enum:
+            - security
+            - performance
+            - health
+          type: string
+          x-struct:
+          x-validate:
+        cron:
+          type: string
+          x-struct:
+          x-validate:
+        description:
+          nullable: true
+          type: string
+          x-struct:
+          x-validate:
+        enabled:
+          type: boolean
+          x-struct:
+          x-validate:
+        group_by:
+          items:
+            type: string
+            x-struct:
+            x-validate:
+          type: array
+          x-struct:
+          x-validate:
+        kind:
+          enum:
+            - scheduled
+            - on_match
+          type: string
+          x-struct:
+          x-validate:
+        language:
+          enum:
+            - bq_sql
+            - pg_sql
+            - lql
+          type: string
+          x-struct:
+          x-validate:
+        managed:
+          type: boolean
+          x-struct:
+          x-validate:
+        name:
+          type: string
+          x-struct:
+          x-validate:
+        query:
+          type: string
+          x-struct:
+          x-validate:
+        resolve_after_runs:
+          minimum: 1
+          type: integer
+          x-struct:
+          x-validate:
+        rule_key:
+          maxLength: 128
+          nullable: true
+          type: string
+          x-struct:
+          x-validate:
+        scope:
+          additionalProperties:
+            type: string
+            x-struct:
+            x-validate:
+          type: object
+          x-struct:
+          x-validate:
+        severity:
+          enum:
+            - critical
+            - major
+            - warning
+            - info
+          type: string
+          x-struct:
+          x-validate:
+        signal_mapping:
+          description: How alert rows become alert issue signals
+          properties:
+            category_column:
+              type: string
+              x-struct:
+              x-validate:
+            description_column:
+              type: string
+              x-struct:
+              x-validate:
+            identifiers:
+              additionalProperties:
+                type: string
+                x-struct:
+                x-validate:
+              type: object
+              x-struct:
+              x-validate:
+            metadata_columns:
+              items:
+                type: string
+                x-struct:
+                x-validate:
+              type: array
+              x-struct:
+              x-validate:
+            notebook:
+              items:
+                properties:
+                  source:
+                    enum:
+                      - database
+                      - logs
+                    type: string
+                    x-struct:
+                    x-validate:
+                  sql:
+                    type: string
+                    x-struct:
+                    x-validate:
+                  title:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - title
+                  - source
+                  - sql
+                type: object
+                x-struct:
+                x-validate:
+              maxItems: 10
+              type: array
+              x-struct:
+              x-validate:
+            preview:
+              properties:
+                lql:
+                  type: string
+                  x-struct:
+                  x-validate:
+              type: object
+              x-struct:
+              x-validate:
+            severity_column:
+              type: string
+              x-struct:
+              x-validate:
+            title_column:
+              type: string
+              x-struct:
+              x-validate:
+            window_seconds:
+              minimum: 1
+              type: integer
+              x-struct:
+              x-validate:
+          type: object
+          x-struct:
+          x-validate:
+        slack_hook_url:
+          nullable: true
+          type: string
+          x-struct:
+          x-validate:
+        webhook_notification_url:
+          nullable: true
+          type: string
+          x-struct:
+          x-validate:
+      required:
+        - name
+        - query
+        - cron
+      title: AlertApiCreateParams
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.AlertApiCreateParams
+      x-validate:
+    AlertApiSchema:
+      properties:
+        backends:
+          items:
+            $ref: '#/components/schemas/BackendApiSchema'
+          type: array
+          x-struct:
+          x-validate:
+        category:
+          enum:
+            - security
+            - performance
+            - health
+          type: string
+          x-struct:
+          x-validate:
+        cron:
+          type: string
+          x-struct:
+          x-validate:
+        description:
+          nullable: true
+          type: string
+          x-struct:
+          x-validate:
+        enabled:
+          type: boolean
+          x-struct:
+          x-validate:
+        group_by:
+          items:
+            type: string
+            x-struct:
+            x-validate:
+          type: array
+          x-struct:
+          x-validate:
+        id:
+          type: integer
+          x-struct:
+          x-validate:
+        kind:
+          enum:
+            - scheduled
+            - on_match
+          type: string
+          x-struct:
+          x-validate:
+        language:
+          enum:
+            - bq_sql
+            - pg_sql
+            - lql
+          type: string
+          x-struct:
+          x-validate:
+        managed:
+          type: boolean
+          x-struct:
+          x-validate:
+        name:
+          type: string
+          x-struct:
+          x-validate:
+        query:
+          type: string
+          x-struct:
+          x-validate:
+        resolve_after_runs:
+          minimum: 1
+          type: integer
+          x-struct:
+          x-validate:
+        rule_key:
+          maxLength: 128
+          nullable: true
+          type: string
+          x-struct:
+          x-validate:
+        scope:
+          additionalProperties:
+            type: string
+            x-struct:
+            x-validate:
+          type: object
+          x-struct:
+          x-validate:
+        severity:
+          enum:
+            - critical
+            - major
+            - warning
+            - info
+          type: string
+          x-struct:
+          x-validate:
+        signal_mapping:
+          description: How alert rows become alert issue signals
+          properties:
+            category_column:
+              type: string
+              x-struct:
+              x-validate:
+            description_column:
+              type: string
+              x-struct:
+              x-validate:
+            identifiers:
+              additionalProperties:
+                type: string
+                x-struct:
+                x-validate:
+              type: object
+              x-struct:
+              x-validate:
+            metadata_columns:
+              items:
+                type: string
+                x-struct:
+                x-validate:
+              type: array
+              x-struct:
+              x-validate:
+            notebook:
+              items:
+                properties:
+                  source:
+                    enum:
+                      - database
+                      - logs
+                    type: string
+                    x-struct:
+                    x-validate:
+                  sql:
+                    type: string
+                    x-struct:
+                    x-validate:
+                  title:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - title
+                  - source
+                  - sql
+                type: object
+                x-struct:
+                x-validate:
+              maxItems: 10
+              type: array
+              x-struct:
+              x-validate:
+            preview:
+              properties:
+                lql:
+                  type: string
+                  x-struct:
+                  x-validate:
+              type: object
+              x-struct:
+              x-validate:
+            severity_column:
+              type: string
+              x-struct:
+              x-validate:
+            title_column:
+              type: string
+              x-struct:
+              x-validate:
+            window_seconds:
+              minimum: 1
+              type: integer
+              x-struct:
+              x-validate:
+          type: object
+          x-struct:
+          x-validate:
+        slack_hook_url:
+          nullable: true
+          type: string
+          x-struct:
+          x-validate:
+        token:
+          type: string
+          x-struct:
+          x-validate:
+        webhook_notification_url:
+          nullable: true
+          type: string
+          x-struct:
+          x-validate:
+      required:
+        - name
+        - query
+        - cron
+        - language
+      title: AlertApiSchema
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.AlertApiSchema
+      x-validate:
+    AlertApiUpdateParams:
+      properties:
+        backend_ids:
+          description: Complete replacement set of attached backend IDs
+          items:
+            minimum: 1
+            type: integer
+            x-struct:
+            x-validate:
+          type: array
+          x-struct:
+          x-validate:
+        category:
+          enum:
+            - security
+            - performance
+            - health
+          type: string
+          x-struct:
+          x-validate:
+        cron:
+          type: string
+          x-struct:
+          x-validate:
+        description:
+          nullable: true
+          type: string
+          x-struct:
+          x-validate:
+        enabled:
+          type: boolean
+          x-struct:
+          x-validate:
+        group_by:
+          items:
+            type: string
+            x-struct:
+            x-validate:
+          type: array
+          x-struct:
+          x-validate:
+        kind:
+          enum:
+            - scheduled
+            - on_match
+          type: string
+          x-struct:
+          x-validate:
+        language:
+          enum:
+            - bq_sql
+            - pg_sql
+            - lql
+          type: string
+          x-struct:
+          x-validate:
+        managed:
+          type: boolean
+          x-struct:
+          x-validate:
+        name:
+          type: string
+          x-struct:
+          x-validate:
+        query:
+          type: string
+          x-struct:
+          x-validate:
+        resolve_after_runs:
+          minimum: 1
+          type: integer
+          x-struct:
+          x-validate:
+        rule_key:
+          maxLength: 128
+          nullable: true
+          type: string
+          x-struct:
+          x-validate:
+        scope:
+          additionalProperties:
+            type: string
+            x-struct:
+            x-validate:
+          type: object
+          x-struct:
+          x-validate:
+        severity:
+          enum:
+            - critical
+            - major
+            - warning
+            - info
+          type: string
+          x-struct:
+          x-validate:
+        signal_mapping:
+          description: How alert rows become alert issue signals
+          properties:
+            category_column:
+              type: string
+              x-struct:
+              x-validate:
+            description_column:
+              type: string
+              x-struct:
+              x-validate:
+            identifiers:
+              additionalProperties:
+                type: string
+                x-struct:
+                x-validate:
+              type: object
+              x-struct:
+              x-validate:
+            metadata_columns:
+              items:
+                type: string
+                x-struct:
+                x-validate:
+              type: array
+              x-struct:
+              x-validate:
+            notebook:
+              items:
+                properties:
+                  source:
+                    enum:
+                      - database
+                      - logs
+                    type: string
+                    x-struct:
+                    x-validate:
+                  sql:
+                    type: string
+                    x-struct:
+                    x-validate:
+                  title:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - title
+                  - source
+                  - sql
+                type: object
+                x-struct:
+                x-validate:
+              maxItems: 10
+              type: array
+              x-struct:
+              x-validate:
+            preview:
+              properties:
+                lql:
+                  type: string
+                  x-struct:
+                  x-validate:
+              type: object
+              x-struct:
+              x-validate:
+            severity_column:
+              type: string
+              x-struct:
+              x-validate:
+            title_column:
+              type: string
+              x-struct:
+              x-validate:
+            window_seconds:
+              minimum: 1
+              type: integer
+              x-struct:
+              x-validate:
+          type: object
+          x-struct:
+          x-validate:
+        slack_hook_url:
+          nullable: true
+          type: string
+          x-struct:
+          x-validate:
+        webhook_notification_url:
+          nullable: true
+          type: string
+          x-struct:
+          x-validate:
+      title: AlertApiUpdateParams
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.AlertApiUpdateParams
+      x-validate:
+    UnauthorizedResponse:
+      properties:
+        error:
+          type: string
+          x-struct:
+          x-validate:
+      required:
+        - error
+      title: UnauthorizedResponse
+      type: object
+      x-struct:
+      x-validate:
     AcceptedResponse:
       title: AcceptedResponse
       x-struct:
@@ -715,6 +1313,380 @@ paths:
                 x-validate:
           description: Not found
       summary: Delete access token
+      tags:
+        - management
+  /api/alerts:
+    get:
+      callbacks: {}
+      operationId: LogflareWeb.Api.AlertController.index
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AlertApiSchema'
+                title: AlertApiSchemaListResponse
+                type: array
+                x-struct:
+                x-validate:
+          description: AlertApiSchema List Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Unauthorized
+      summary: List alerts
+      tags:
+        - management
+    post:
+      callbacks: {}
+      operationId: LogflareWeb.Api.AlertController.create
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertApiCreateParams'
+        description: AlertApiCreateParams Parameters
+        required: false
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertApiSchema'
+          description: Created Response
+        '400':
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    oneOf:
+                      - type: string
+                        x-struct:
+                        x-validate:
+                      - type: object
+                        x-struct:
+                        x-validate:
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: BadRequestResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Bad request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+        '422':
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: object
+                    x-struct:
+                    x-validate:
+                required:
+                  - errors
+                title: UnprocessableEntityResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Unprocessable Entity
+      summary: Create alert
+      tags:
+        - management
+  /api/alerts/{token}:
+    delete:
+      callbacks: {}
+      operationId: LogflareWeb.Api.AlertController.delete
+      parameters:
+        - description: Alert UUID
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        '204':
+          description: Accepted Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Delete alert
+      tags:
+        - management
+    get:
+      callbacks: {}
+      operationId: LogflareWeb.Api.AlertController.show
+      parameters:
+        - description: Alert UUID
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertApiSchema'
+          description: AlertApiSchema Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+      summary: Fetch alert
+      tags:
+        - management
+    patch:
+      callbacks: {}
+      operationId: LogflareWeb.Api.AlertController.update (2)
+      parameters:
+        - description: Alert UUID
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertApiUpdateParams'
+        description: AlertApiUpdateParams Parameters
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertApiSchema'
+          description: Accepted Response
+        '204':
+          description: Accepted Response
+        '400':
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    oneOf:
+                      - type: string
+                        x-struct:
+                        x-validate:
+                      - type: object
+                        x-struct:
+                        x-validate:
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: BadRequestResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Bad request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+        '422':
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: object
+                    x-struct:
+                    x-validate:
+                required:
+                  - errors
+                title: UnprocessableEntityResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Unprocessable Entity
+      summary: Update alert
+      tags:
+        - management
+    put:
+      callbacks: {}
+      operationId: LogflareWeb.Api.AlertController.update
+      parameters:
+        - description: Alert UUID
+          in: path
+          name: token
+          required: true
+          schema:
+            type: string
+            x-struct:
+            x-validate:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertApiUpdateParams'
+        description: AlertApiUpdateParams Parameters
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertApiSchema'
+          description: Accepted Response
+        '204':
+          description: Accepted Response
+        '400':
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    oneOf:
+                      - type: string
+                        x-struct:
+                        x-validate:
+                      - type: object
+                        x-struct:
+                        x-validate:
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: BadRequestResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Bad request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct:
+                    x-validate:
+                required:
+                  - error
+                title: NotFoundResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Not found
+        '422':
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: object
+                    x-struct:
+                    x-validate:
+                required:
+                  - errors
+                title: UnprocessableEntityResponse
+                type: object
+                x-struct:
+                x-validate:
+          description: Unprocessable Entity
+      summary: Update alert
       tags:
         - management
   /api/backends:
