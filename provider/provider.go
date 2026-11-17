@@ -153,6 +153,7 @@ func (p *logflareProvider) Resources(_ context.Context) []func() resource.Resour
 		NewEndpointResource,
 		NewSourceResource,
 		NewAlertResource,
+		NewAlertNotificationPolicyResource,
 	}
 }
 
