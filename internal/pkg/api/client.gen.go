@@ -87,9 +87,9 @@ const (
 
 // Defines values for AlertApiUpdateParamsCategory.
 const (
-	Health      AlertApiUpdateParamsCategory = "health"
-	Performance AlertApiUpdateParamsCategory = "performance"
-	Security    AlertApiUpdateParamsCategory = "security"
+	AlertApiUpdateParamsCategoryHealth      AlertApiUpdateParamsCategory = "health"
+	AlertApiUpdateParamsCategoryPerformance AlertApiUpdateParamsCategory = "performance"
+	AlertApiUpdateParamsCategorySecurity    AlertApiUpdateParamsCategory = "security"
 )
 
 // Defines values for AlertApiUpdateParamsKind.
@@ -107,16 +107,62 @@ const (
 
 // Defines values for AlertApiUpdateParamsSeverity.
 const (
-	Critical AlertApiUpdateParamsSeverity = "critical"
-	Info     AlertApiUpdateParamsSeverity = "info"
-	Major    AlertApiUpdateParamsSeverity = "major"
-	Warning  AlertApiUpdateParamsSeverity = "warning"
+	AlertApiUpdateParamsSeverityCritical AlertApiUpdateParamsSeverity = "critical"
+	AlertApiUpdateParamsSeverityInfo     AlertApiUpdateParamsSeverity = "info"
+	AlertApiUpdateParamsSeverityMajor    AlertApiUpdateParamsSeverity = "major"
+	AlertApiUpdateParamsSeverityWarning  AlertApiUpdateParamsSeverity = "warning"
 )
 
 // Defines values for AlertApiUpdateParamsSignalMappingNotebookSource.
 const (
 	Database AlertApiUpdateParamsSignalMappingNotebookSource = "database"
 	Logs     AlertApiUpdateParamsSignalMappingNotebookSource = "logs"
+)
+
+// Defines values for AlertNotificationPolicyApiParamsCategories.
+const (
+	AlertNotificationPolicyApiParamsCategoriesHealth      AlertNotificationPolicyApiParamsCategories = "health"
+	AlertNotificationPolicyApiParamsCategoriesPerformance AlertNotificationPolicyApiParamsCategories = "performance"
+	AlertNotificationPolicyApiParamsCategoriesSecurity    AlertNotificationPolicyApiParamsCategories = "security"
+)
+
+// Defines values for AlertNotificationPolicyApiParamsEvents.
+const (
+	AlertNotificationPolicyApiParamsEventsOpened   AlertNotificationPolicyApiParamsEvents = "opened"
+	AlertNotificationPolicyApiParamsEventsReopened AlertNotificationPolicyApiParamsEvents = "reopened"
+	AlertNotificationPolicyApiParamsEventsRepeat   AlertNotificationPolicyApiParamsEvents = "repeat"
+	AlertNotificationPolicyApiParamsEventsResolved AlertNotificationPolicyApiParamsEvents = "resolved"
+)
+
+// Defines values for AlertNotificationPolicyApiParamsMinSeverity.
+const (
+	AlertNotificationPolicyApiParamsMinSeverityCritical AlertNotificationPolicyApiParamsMinSeverity = "critical"
+	AlertNotificationPolicyApiParamsMinSeverityInfo     AlertNotificationPolicyApiParamsMinSeverity = "info"
+	AlertNotificationPolicyApiParamsMinSeverityMajor    AlertNotificationPolicyApiParamsMinSeverity = "major"
+	AlertNotificationPolicyApiParamsMinSeverityWarning  AlertNotificationPolicyApiParamsMinSeverity = "warning"
+)
+
+// Defines values for AlertNotificationPolicyApiSchemaCategories.
+const (
+	Health      AlertNotificationPolicyApiSchemaCategories = "health"
+	Performance AlertNotificationPolicyApiSchemaCategories = "performance"
+	Security    AlertNotificationPolicyApiSchemaCategories = "security"
+)
+
+// Defines values for AlertNotificationPolicyApiSchemaEvents.
+const (
+	AlertNotificationPolicyApiSchemaEventsOpened   AlertNotificationPolicyApiSchemaEvents = "opened"
+	AlertNotificationPolicyApiSchemaEventsReopened AlertNotificationPolicyApiSchemaEvents = "reopened"
+	AlertNotificationPolicyApiSchemaEventsRepeat   AlertNotificationPolicyApiSchemaEvents = "repeat"
+	AlertNotificationPolicyApiSchemaEventsResolved AlertNotificationPolicyApiSchemaEvents = "resolved"
+)
+
+// Defines values for AlertNotificationPolicyApiSchemaMinSeverity.
+const (
+	Critical AlertNotificationPolicyApiSchemaMinSeverity = "critical"
+	Info     AlertNotificationPolicyApiSchemaMinSeverity = "info"
+	Major    AlertNotificationPolicyApiSchemaMinSeverity = "major"
+	Warning  AlertNotificationPolicyApiSchemaMinSeverity = "warning"
 )
 
 // AccessToken defines model for AccessToken.
@@ -296,6 +342,61 @@ type AlertApiUpdateParamsSeverity string
 
 // AlertApiUpdateParamsSignalMappingNotebookSource defines model for AlertApiUpdateParams.SignalMapping.Notebook.Source.
 type AlertApiUpdateParamsSignalMappingNotebookSource string
+
+// AlertNotificationPolicyApiParams defines model for AlertNotificationPolicyApiParams.
+type AlertNotificationPolicyApiParams struct {
+	Categories  *[]AlertNotificationPolicyApiParamsCategories `json:"categories,omitempty"`
+	Enabled     *bool                                         `json:"enabled,omitempty"`
+	Events      *[]AlertNotificationPolicyApiParamsEvents     `json:"events,omitempty"`
+	Identifiers *map[string]string                            `json:"identifiers,omitempty"`
+	MinSeverity *AlertNotificationPolicyApiParamsMinSeverity  `json:"min_severity"`
+	Name        *string                                       `json:"name,omitempty"`
+
+	// Receivers Receiver names the control plane maps to destinations
+	Receivers             *[]string `json:"receivers,omitempty"`
+	RepeatIntervalSeconds *int      `json:"repeat_interval_seconds"`
+
+	// RuleKeys Rule key globs; empty matches every rule
+	RuleKeys *[]string `json:"rule_keys,omitempty"`
+}
+
+// AlertNotificationPolicyApiParamsCategories defines model for AlertNotificationPolicyApiParams.Categories.
+type AlertNotificationPolicyApiParamsCategories string
+
+// AlertNotificationPolicyApiParamsEvents defines model for AlertNotificationPolicyApiParams.Events.
+type AlertNotificationPolicyApiParamsEvents string
+
+// AlertNotificationPolicyApiParamsMinSeverity defines model for AlertNotificationPolicyApiParams.MinSeverity.
+type AlertNotificationPolicyApiParamsMinSeverity string
+
+// AlertNotificationPolicyApiSchema defines model for AlertNotificationPolicyApiSchema.
+type AlertNotificationPolicyApiSchema struct {
+	Categories  *[]AlertNotificationPolicyApiSchemaCategories `json:"categories,omitempty"`
+	Enabled     *bool                                         `json:"enabled,omitempty"`
+	Events      *[]AlertNotificationPolicyApiSchemaEvents     `json:"events,omitempty"`
+	Id          int                                           `json:"id"`
+	Identifiers *map[string]string                            `json:"identifiers,omitempty"`
+	InsertedAt  *time.Time                                    `json:"inserted_at,omitempty"`
+	MinSeverity *AlertNotificationPolicyApiSchemaMinSeverity  `json:"min_severity"`
+	Name        string                                        `json:"name"`
+
+	// Receivers Receiver names the control plane maps to destinations
+	Receivers             []string `json:"receivers"`
+	RepeatIntervalSeconds *int     `json:"repeat_interval_seconds"`
+
+	// RuleKeys Rule key globs; empty matches every rule
+	RuleKeys  *[]string  `json:"rule_keys,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+}
+
+// AlertNotificationPolicyApiSchemaCategories defines model for AlertNotificationPolicyApiSchema.Categories.
+type AlertNotificationPolicyApiSchemaCategories string
+
+// AlertNotificationPolicyApiSchemaEvents defines model for AlertNotificationPolicyApiSchema.Events.
+type AlertNotificationPolicyApiSchemaEvents string
+
+// AlertNotificationPolicyApiSchemaMinSeverity defines model for AlertNotificationPolicyApiSchema.MinSeverity.
+type AlertNotificationPolicyApiSchemaMinSeverity string
 
 // BackendApiSchema defines model for BackendApiSchema.
 type BackendApiSchema struct {
@@ -546,6 +647,15 @@ type LogflareWebApiAccessTokenControllerCreateJSONRequestBody = AccessToken
 
 // LogflareWebApiAlertControllerCreateJSONRequestBody defines body for LogflareWebApiAlertControllerCreate for application/json ContentType.
 type LogflareWebApiAlertControllerCreateJSONRequestBody = AlertApiCreateParams
+
+// LogflareWebApiAlertNotificationPolicyControllerCreateJSONRequestBody defines body for LogflareWebApiAlertNotificationPolicyControllerCreate for application/json ContentType.
+type LogflareWebApiAlertNotificationPolicyControllerCreateJSONRequestBody = AlertNotificationPolicyApiParams
+
+// LogflareWebApiAlertNotificationPolicyControllerUpdate2JSONRequestBody defines body for LogflareWebApiAlertNotificationPolicyControllerUpdate2 for application/json ContentType.
+type LogflareWebApiAlertNotificationPolicyControllerUpdate2JSONRequestBody = AlertNotificationPolicyApiParams
+
+// LogflareWebApiAlertNotificationPolicyControllerUpdateJSONRequestBody defines body for LogflareWebApiAlertNotificationPolicyControllerUpdate for application/json ContentType.
+type LogflareWebApiAlertNotificationPolicyControllerUpdateJSONRequestBody = AlertNotificationPolicyApiParams
 
 // LogflareWebApiAlertControllerUpdate2JSONRequestBody defines body for LogflareWebApiAlertControllerUpdate2 for application/json ContentType.
 type LogflareWebApiAlertControllerUpdate2JSONRequestBody = AlertApiUpdateParams
@@ -876,6 +986,30 @@ type ClientInterface interface {
 
 	LogflareWebApiAlertControllerCreate(ctx context.Context, body LogflareWebApiAlertControllerCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// LogflareWebApiAlertNotificationPolicyControllerIndex request
+	LogflareWebApiAlertNotificationPolicyControllerIndex(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// LogflareWebApiAlertNotificationPolicyControllerCreateWithBody request with any body
+	LogflareWebApiAlertNotificationPolicyControllerCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	LogflareWebApiAlertNotificationPolicyControllerCreate(ctx context.Context, body LogflareWebApiAlertNotificationPolicyControllerCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// LogflareWebApiAlertNotificationPolicyControllerDelete request
+	LogflareWebApiAlertNotificationPolicyControllerDelete(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// LogflareWebApiAlertNotificationPolicyControllerShow request
+	LogflareWebApiAlertNotificationPolicyControllerShow(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// LogflareWebApiAlertNotificationPolicyControllerUpdate2WithBody request with any body
+	LogflareWebApiAlertNotificationPolicyControllerUpdate2WithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	LogflareWebApiAlertNotificationPolicyControllerUpdate2(ctx context.Context, id int, body LogflareWebApiAlertNotificationPolicyControllerUpdate2JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// LogflareWebApiAlertNotificationPolicyControllerUpdateWithBody request with any body
+	LogflareWebApiAlertNotificationPolicyControllerUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	LogflareWebApiAlertNotificationPolicyControllerUpdate(ctx context.Context, id int, body LogflareWebApiAlertNotificationPolicyControllerUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// LogflareWebApiAlertControllerDelete request
 	LogflareWebApiAlertControllerDelete(ctx context.Context, token string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -1126,6 +1260,114 @@ func (c *Client) LogflareWebApiAlertControllerCreateWithBody(ctx context.Context
 
 func (c *Client) LogflareWebApiAlertControllerCreate(ctx context.Context, body LogflareWebApiAlertControllerCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewLogflareWebApiAlertControllerCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) LogflareWebApiAlertNotificationPolicyControllerIndex(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewLogflareWebApiAlertNotificationPolicyControllerIndexRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) LogflareWebApiAlertNotificationPolicyControllerCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewLogflareWebApiAlertNotificationPolicyControllerCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) LogflareWebApiAlertNotificationPolicyControllerCreate(ctx context.Context, body LogflareWebApiAlertNotificationPolicyControllerCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewLogflareWebApiAlertNotificationPolicyControllerCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) LogflareWebApiAlertNotificationPolicyControllerDelete(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewLogflareWebApiAlertNotificationPolicyControllerDeleteRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) LogflareWebApiAlertNotificationPolicyControllerShow(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewLogflareWebApiAlertNotificationPolicyControllerShowRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) LogflareWebApiAlertNotificationPolicyControllerUpdate2WithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewLogflareWebApiAlertNotificationPolicyControllerUpdate2RequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) LogflareWebApiAlertNotificationPolicyControllerUpdate2(ctx context.Context, id int, body LogflareWebApiAlertNotificationPolicyControllerUpdate2JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewLogflareWebApiAlertNotificationPolicyControllerUpdate2Request(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) LogflareWebApiAlertNotificationPolicyControllerUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewLogflareWebApiAlertNotificationPolicyControllerUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) LogflareWebApiAlertNotificationPolicyControllerUpdate(ctx context.Context, id int, body LogflareWebApiAlertNotificationPolicyControllerUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewLogflareWebApiAlertNotificationPolicyControllerUpdateRequest(c.Server, id, body)
 	if err != nil {
 		return nil, err
 	}
@@ -2063,6 +2305,235 @@ func NewLogflareWebApiAlertControllerCreateRequestWithBody(server string, conten
 	}
 
 	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewLogflareWebApiAlertNotificationPolicyControllerIndexRequest generates requests for LogflareWebApiAlertNotificationPolicyControllerIndex
+func NewLogflareWebApiAlertNotificationPolicyControllerIndexRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/alerts/notification_policies")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewLogflareWebApiAlertNotificationPolicyControllerCreateRequest calls the generic LogflareWebApiAlertNotificationPolicyControllerCreate builder with application/json body
+func NewLogflareWebApiAlertNotificationPolicyControllerCreateRequest(server string, body LogflareWebApiAlertNotificationPolicyControllerCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewLogflareWebApiAlertNotificationPolicyControllerCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewLogflareWebApiAlertNotificationPolicyControllerCreateRequestWithBody generates requests for LogflareWebApiAlertNotificationPolicyControllerCreate with any type of body
+func NewLogflareWebApiAlertNotificationPolicyControllerCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/alerts/notification_policies")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewLogflareWebApiAlertNotificationPolicyControllerDeleteRequest generates requests for LogflareWebApiAlertNotificationPolicyControllerDelete
+func NewLogflareWebApiAlertNotificationPolicyControllerDeleteRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/alerts/notification_policies/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewLogflareWebApiAlertNotificationPolicyControllerShowRequest generates requests for LogflareWebApiAlertNotificationPolicyControllerShow
+func NewLogflareWebApiAlertNotificationPolicyControllerShowRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/alerts/notification_policies/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewLogflareWebApiAlertNotificationPolicyControllerUpdate2Request calls the generic LogflareWebApiAlertNotificationPolicyControllerUpdate2 builder with application/json body
+func NewLogflareWebApiAlertNotificationPolicyControllerUpdate2Request(server string, id int, body LogflareWebApiAlertNotificationPolicyControllerUpdate2JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewLogflareWebApiAlertNotificationPolicyControllerUpdate2RequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewLogflareWebApiAlertNotificationPolicyControllerUpdate2RequestWithBody generates requests for LogflareWebApiAlertNotificationPolicyControllerUpdate2 with any type of body
+func NewLogflareWebApiAlertNotificationPolicyControllerUpdate2RequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/alerts/notification_policies/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewLogflareWebApiAlertNotificationPolicyControllerUpdateRequest calls the generic LogflareWebApiAlertNotificationPolicyControllerUpdate builder with application/json body
+func NewLogflareWebApiAlertNotificationPolicyControllerUpdateRequest(server string, id int, body LogflareWebApiAlertNotificationPolicyControllerUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewLogflareWebApiAlertNotificationPolicyControllerUpdateRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewLogflareWebApiAlertNotificationPolicyControllerUpdateRequestWithBody generates requests for LogflareWebApiAlertNotificationPolicyControllerUpdate with any type of body
+func NewLogflareWebApiAlertNotificationPolicyControllerUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/alerts/notification_policies/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -4131,6 +4602,30 @@ type ClientWithResponsesInterface interface {
 
 	LogflareWebApiAlertControllerCreateWithResponse(ctx context.Context, body LogflareWebApiAlertControllerCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertControllerCreateResponse, error)
 
+	// LogflareWebApiAlertNotificationPolicyControllerIndexWithResponse request
+	LogflareWebApiAlertNotificationPolicyControllerIndexWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertNotificationPolicyControllerIndexResponse, error)
+
+	// LogflareWebApiAlertNotificationPolicyControllerCreateWithBodyWithResponse request with any body
+	LogflareWebApiAlertNotificationPolicyControllerCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertNotificationPolicyControllerCreateResponse, error)
+
+	LogflareWebApiAlertNotificationPolicyControllerCreateWithResponse(ctx context.Context, body LogflareWebApiAlertNotificationPolicyControllerCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertNotificationPolicyControllerCreateResponse, error)
+
+	// LogflareWebApiAlertNotificationPolicyControllerDeleteWithResponse request
+	LogflareWebApiAlertNotificationPolicyControllerDeleteWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertNotificationPolicyControllerDeleteResponse, error)
+
+	// LogflareWebApiAlertNotificationPolicyControllerShowWithResponse request
+	LogflareWebApiAlertNotificationPolicyControllerShowWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertNotificationPolicyControllerShowResponse, error)
+
+	// LogflareWebApiAlertNotificationPolicyControllerUpdate2WithBodyWithResponse request with any body
+	LogflareWebApiAlertNotificationPolicyControllerUpdate2WithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertNotificationPolicyControllerUpdate2Response, error)
+
+	LogflareWebApiAlertNotificationPolicyControllerUpdate2WithResponse(ctx context.Context, id int, body LogflareWebApiAlertNotificationPolicyControllerUpdate2JSONRequestBody, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertNotificationPolicyControllerUpdate2Response, error)
+
+	// LogflareWebApiAlertNotificationPolicyControllerUpdateWithBodyWithResponse request with any body
+	LogflareWebApiAlertNotificationPolicyControllerUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertNotificationPolicyControllerUpdateResponse, error)
+
+	LogflareWebApiAlertNotificationPolicyControllerUpdateWithResponse(ctx context.Context, id int, body LogflareWebApiAlertNotificationPolicyControllerUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertNotificationPolicyControllerUpdateResponse, error)
+
 	// LogflareWebApiAlertControllerDeleteWithResponse request
 	LogflareWebApiAlertControllerDeleteWithResponse(ctx context.Context, token string, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertControllerDeleteResponse, error)
 
@@ -4426,6 +4921,164 @@ func (r LogflareWebApiAlertControllerCreateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r LogflareWebApiAlertControllerCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type LogflareWebApiAlertNotificationPolicyControllerIndexResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AlertNotificationPolicyApiSchema
+	JSON401      *UnauthorizedResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r LogflareWebApiAlertNotificationPolicyControllerIndexResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r LogflareWebApiAlertNotificationPolicyControllerIndexResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type LogflareWebApiAlertNotificationPolicyControllerCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *AlertNotificationPolicyApiSchema
+	JSON401      *UnauthorizedResponse
+	JSON422      *struct {
+		Errors map[string]interface{} `json:"errors"`
+	}
+}
+
+// Status returns HTTPResponse.Status
+func (r LogflareWebApiAlertNotificationPolicyControllerCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r LogflareWebApiAlertNotificationPolicyControllerCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type LogflareWebApiAlertNotificationPolicyControllerDeleteResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON401      *UnauthorizedResponse
+	JSON404      *struct {
+		Error string `json:"error"`
+	}
+}
+
+// Status returns HTTPResponse.Status
+func (r LogflareWebApiAlertNotificationPolicyControllerDeleteResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r LogflareWebApiAlertNotificationPolicyControllerDeleteResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type LogflareWebApiAlertNotificationPolicyControllerShowResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AlertNotificationPolicyApiSchema
+	JSON401      *UnauthorizedResponse
+	JSON404      *struct {
+		Error string `json:"error"`
+	}
+}
+
+// Status returns HTTPResponse.Status
+func (r LogflareWebApiAlertNotificationPolicyControllerShowResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r LogflareWebApiAlertNotificationPolicyControllerShowResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type LogflareWebApiAlertNotificationPolicyControllerUpdate2Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AlertNotificationPolicyApiSchema
+	JSON401      *UnauthorizedResponse
+	JSON404      *struct {
+		Error string `json:"error"`
+	}
+	JSON422 *struct {
+		Errors map[string]interface{} `json:"errors"`
+	}
+}
+
+// Status returns HTTPResponse.Status
+func (r LogflareWebApiAlertNotificationPolicyControllerUpdate2Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r LogflareWebApiAlertNotificationPolicyControllerUpdate2Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type LogflareWebApiAlertNotificationPolicyControllerUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AlertNotificationPolicyApiSchema
+	JSON401      *UnauthorizedResponse
+	JSON404      *struct {
+		Error string `json:"error"`
+	}
+	JSON422 *struct {
+		Errors map[string]interface{} `json:"errors"`
+	}
+}
+
+// Status returns HTTPResponse.Status
+func (r LogflareWebApiAlertNotificationPolicyControllerUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r LogflareWebApiAlertNotificationPolicyControllerUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -5575,6 +6228,84 @@ func (c *ClientWithResponses) LogflareWebApiAlertControllerCreateWithResponse(ct
 	return ParseLogflareWebApiAlertControllerCreateResponse(rsp)
 }
 
+// LogflareWebApiAlertNotificationPolicyControllerIndexWithResponse request returning *LogflareWebApiAlertNotificationPolicyControllerIndexResponse
+func (c *ClientWithResponses) LogflareWebApiAlertNotificationPolicyControllerIndexWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertNotificationPolicyControllerIndexResponse, error) {
+	rsp, err := c.LogflareWebApiAlertNotificationPolicyControllerIndex(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseLogflareWebApiAlertNotificationPolicyControllerIndexResponse(rsp)
+}
+
+// LogflareWebApiAlertNotificationPolicyControllerCreateWithBodyWithResponse request with arbitrary body returning *LogflareWebApiAlertNotificationPolicyControllerCreateResponse
+func (c *ClientWithResponses) LogflareWebApiAlertNotificationPolicyControllerCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertNotificationPolicyControllerCreateResponse, error) {
+	rsp, err := c.LogflareWebApiAlertNotificationPolicyControllerCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseLogflareWebApiAlertNotificationPolicyControllerCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) LogflareWebApiAlertNotificationPolicyControllerCreateWithResponse(ctx context.Context, body LogflareWebApiAlertNotificationPolicyControllerCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertNotificationPolicyControllerCreateResponse, error) {
+	rsp, err := c.LogflareWebApiAlertNotificationPolicyControllerCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseLogflareWebApiAlertNotificationPolicyControllerCreateResponse(rsp)
+}
+
+// LogflareWebApiAlertNotificationPolicyControllerDeleteWithResponse request returning *LogflareWebApiAlertNotificationPolicyControllerDeleteResponse
+func (c *ClientWithResponses) LogflareWebApiAlertNotificationPolicyControllerDeleteWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertNotificationPolicyControllerDeleteResponse, error) {
+	rsp, err := c.LogflareWebApiAlertNotificationPolicyControllerDelete(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseLogflareWebApiAlertNotificationPolicyControllerDeleteResponse(rsp)
+}
+
+// LogflareWebApiAlertNotificationPolicyControllerShowWithResponse request returning *LogflareWebApiAlertNotificationPolicyControllerShowResponse
+func (c *ClientWithResponses) LogflareWebApiAlertNotificationPolicyControllerShowWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertNotificationPolicyControllerShowResponse, error) {
+	rsp, err := c.LogflareWebApiAlertNotificationPolicyControllerShow(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseLogflareWebApiAlertNotificationPolicyControllerShowResponse(rsp)
+}
+
+// LogflareWebApiAlertNotificationPolicyControllerUpdate2WithBodyWithResponse request with arbitrary body returning *LogflareWebApiAlertNotificationPolicyControllerUpdate2Response
+func (c *ClientWithResponses) LogflareWebApiAlertNotificationPolicyControllerUpdate2WithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertNotificationPolicyControllerUpdate2Response, error) {
+	rsp, err := c.LogflareWebApiAlertNotificationPolicyControllerUpdate2WithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseLogflareWebApiAlertNotificationPolicyControllerUpdate2Response(rsp)
+}
+
+func (c *ClientWithResponses) LogflareWebApiAlertNotificationPolicyControllerUpdate2WithResponse(ctx context.Context, id int, body LogflareWebApiAlertNotificationPolicyControllerUpdate2JSONRequestBody, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertNotificationPolicyControllerUpdate2Response, error) {
+	rsp, err := c.LogflareWebApiAlertNotificationPolicyControllerUpdate2(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseLogflareWebApiAlertNotificationPolicyControllerUpdate2Response(rsp)
+}
+
+// LogflareWebApiAlertNotificationPolicyControllerUpdateWithBodyWithResponse request with arbitrary body returning *LogflareWebApiAlertNotificationPolicyControllerUpdateResponse
+func (c *ClientWithResponses) LogflareWebApiAlertNotificationPolicyControllerUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertNotificationPolicyControllerUpdateResponse, error) {
+	rsp, err := c.LogflareWebApiAlertNotificationPolicyControllerUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseLogflareWebApiAlertNotificationPolicyControllerUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) LogflareWebApiAlertNotificationPolicyControllerUpdateWithResponse(ctx context.Context, id int, body LogflareWebApiAlertNotificationPolicyControllerUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertNotificationPolicyControllerUpdateResponse, error) {
+	rsp, err := c.LogflareWebApiAlertNotificationPolicyControllerUpdate(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseLogflareWebApiAlertNotificationPolicyControllerUpdateResponse(rsp)
+}
+
 // LogflareWebApiAlertControllerDeleteWithResponse request returning *LogflareWebApiAlertControllerDeleteResponse
 func (c *ClientWithResponses) LogflareWebApiAlertControllerDeleteWithResponse(ctx context.Context, token string, reqEditors ...RequestEditorFn) (*LogflareWebApiAlertControllerDeleteResponse, error) {
 	rsp, err := c.LogflareWebApiAlertControllerDelete(ctx, token, reqEditors...)
@@ -6264,6 +6995,260 @@ func ParseLogflareWebApiAlertControllerCreateResponse(rsp *http.Response) (*Logf
 			return nil, err
 		}
 		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest UnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest struct {
+			Error string `json:"error"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest struct {
+			Errors map[string]interface{} `json:"errors"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseLogflareWebApiAlertNotificationPolicyControllerIndexResponse parses an HTTP response from a LogflareWebApiAlertNotificationPolicyControllerIndexWithResponse call
+func ParseLogflareWebApiAlertNotificationPolicyControllerIndexResponse(rsp *http.Response) (*LogflareWebApiAlertNotificationPolicyControllerIndexResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &LogflareWebApiAlertNotificationPolicyControllerIndexResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AlertNotificationPolicyApiSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest UnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseLogflareWebApiAlertNotificationPolicyControllerCreateResponse parses an HTTP response from a LogflareWebApiAlertNotificationPolicyControllerCreateWithResponse call
+func ParseLogflareWebApiAlertNotificationPolicyControllerCreateResponse(rsp *http.Response) (*LogflareWebApiAlertNotificationPolicyControllerCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &LogflareWebApiAlertNotificationPolicyControllerCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest AlertNotificationPolicyApiSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest UnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest struct {
+			Errors map[string]interface{} `json:"errors"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseLogflareWebApiAlertNotificationPolicyControllerDeleteResponse parses an HTTP response from a LogflareWebApiAlertNotificationPolicyControllerDeleteWithResponse call
+func ParseLogflareWebApiAlertNotificationPolicyControllerDeleteResponse(rsp *http.Response) (*LogflareWebApiAlertNotificationPolicyControllerDeleteResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &LogflareWebApiAlertNotificationPolicyControllerDeleteResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest UnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest struct {
+			Error string `json:"error"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseLogflareWebApiAlertNotificationPolicyControllerShowResponse parses an HTTP response from a LogflareWebApiAlertNotificationPolicyControllerShowWithResponse call
+func ParseLogflareWebApiAlertNotificationPolicyControllerShowResponse(rsp *http.Response) (*LogflareWebApiAlertNotificationPolicyControllerShowResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &LogflareWebApiAlertNotificationPolicyControllerShowResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AlertNotificationPolicyApiSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest UnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest struct {
+			Error string `json:"error"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseLogflareWebApiAlertNotificationPolicyControllerUpdate2Response parses an HTTP response from a LogflareWebApiAlertNotificationPolicyControllerUpdate2WithResponse call
+func ParseLogflareWebApiAlertNotificationPolicyControllerUpdate2Response(rsp *http.Response) (*LogflareWebApiAlertNotificationPolicyControllerUpdate2Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &LogflareWebApiAlertNotificationPolicyControllerUpdate2Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AlertNotificationPolicyApiSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest UnauthorizedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest struct {
+			Error string `json:"error"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest struct {
+			Errors map[string]interface{} `json:"errors"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseLogflareWebApiAlertNotificationPolicyControllerUpdateResponse parses an HTTP response from a LogflareWebApiAlertNotificationPolicyControllerUpdateWithResponse call
+func ParseLogflareWebApiAlertNotificationPolicyControllerUpdateResponse(rsp *http.Response) (*LogflareWebApiAlertNotificationPolicyControllerUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &LogflareWebApiAlertNotificationPolicyControllerUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AlertNotificationPolicyApiSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
 		var dest UnauthorizedResponse

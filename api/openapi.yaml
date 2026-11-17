@@ -1201,6 +1201,186 @@ components:
       type: object
       x-struct: Elixir.LogflareWeb.OpenApiSchemas.User
       x-validate:
+    AlertNotificationPolicyApiParams:
+      properties:
+        categories:
+          items:
+            enum:
+            - security
+            - performance
+            - health
+            type: string
+            x-struct: null
+            x-validate: null
+          type: array
+          x-struct: null
+          x-validate: null
+        enabled:
+          type: boolean
+          x-struct: null
+          x-validate: null
+        events:
+          items:
+            enum:
+            - opened
+            - reopened
+            - repeat
+            - resolved
+            type: string
+            x-struct: null
+            x-validate: null
+          type: array
+          x-struct: null
+          x-validate: null
+        identifiers:
+          additionalProperties:
+            type: string
+            x-struct: null
+            x-validate: null
+          type: object
+          x-struct: null
+          x-validate: null
+        min_severity:
+          enum:
+          - critical
+          - major
+          - warning
+          - info
+          nullable: true
+          type: string
+          x-struct: null
+          x-validate: null
+        name:
+          type: string
+          x-struct: null
+          x-validate: null
+        receivers:
+          description: Receiver names the control plane maps to destinations
+          items:
+            type: string
+            x-struct: null
+            x-validate: null
+          type: array
+          x-struct: null
+          x-validate: null
+        repeat_interval_seconds:
+          minimum: 300
+          nullable: true
+          type: integer
+          x-struct: null
+          x-validate: null
+        rule_keys:
+          description: Rule key globs; empty matches every rule
+          items:
+            type: string
+            x-struct: null
+            x-validate: null
+          type: array
+          x-struct: null
+          x-validate: null
+      title: AlertNotificationPolicyApiParams
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.AlertNotificationPolicyApiParams
+      x-validate: null
+    AlertNotificationPolicyApiSchema:
+      properties:
+        categories:
+          items:
+            enum:
+            - security
+            - performance
+            - health
+            type: string
+            x-struct: null
+            x-validate: null
+          type: array
+          x-struct: null
+          x-validate: null
+        enabled:
+          type: boolean
+          x-struct: null
+          x-validate: null
+        events:
+          items:
+            enum:
+            - opened
+            - reopened
+            - repeat
+            - resolved
+            type: string
+            x-struct: null
+            x-validate: null
+          type: array
+          x-struct: null
+          x-validate: null
+        id:
+          type: integer
+          x-struct: null
+          x-validate: null
+        identifiers:
+          additionalProperties:
+            type: string
+            x-struct: null
+            x-validate: null
+          type: object
+          x-struct: null
+          x-validate: null
+        inserted_at:
+          format: date-time
+          type: string
+          x-struct: null
+          x-validate: null
+        min_severity:
+          enum:
+          - critical
+          - major
+          - warning
+          - info
+          nullable: true
+          type: string
+          x-struct: null
+          x-validate: null
+        name:
+          type: string
+          x-struct: null
+          x-validate: null
+        receivers:
+          description: Receiver names the control plane maps to destinations
+          items:
+            type: string
+            x-struct: null
+            x-validate: null
+          type: array
+          x-struct: null
+          x-validate: null
+        repeat_interval_seconds:
+          minimum: 300
+          nullable: true
+          type: integer
+          x-struct: null
+          x-validate: null
+        rule_keys:
+          description: Rule key globs; empty matches every rule
+          items:
+            type: string
+            x-struct: null
+            x-validate: null
+          type: array
+          x-struct: null
+          x-validate: null
+        updated_at:
+          format: date-time
+          type: string
+          x-struct: null
+          x-validate: null
+      required:
+      - id
+      - name
+      - receivers
+      title: AlertNotificationPolicyApiSchema
+      type: object
+      x-struct: Elixir.LogflareWeb.OpenApiSchemas.AlertNotificationPolicyApiSchema
+      x-validate: null
   securitySchemes:
     authorization:
       bearerFormat: JWT
@@ -3547,6 +3727,294 @@ paths:
       summary: Update team
       tags:
         - management
+  /api/alerts/notification_policies:
+    get:
+      callbacks: {}
+      operationId: LogflareWeb.Api.AlertNotificationPolicyController.index
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AlertNotificationPolicyApiSchema'
+                title: AlertNotificationPolicyApiSchemaListResponse
+                type: array
+                x-struct: null
+                x-validate: null
+          description: AlertNotificationPolicyApiSchema List Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Unauthorized
+      summary: List alert issue notification policies
+      tags:
+      - management
+    post:
+      callbacks: {}
+      operationId: LogflareWeb.Api.AlertNotificationPolicyController.create
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertNotificationPolicyApiParams'
+        description: AlertNotificationPolicyApiParams Parameters
+        required: false
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertNotificationPolicyApiSchema'
+          description: Created Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Unauthorized
+        '422':
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: object
+                    x-struct: null
+                    x-validate: null
+                required:
+                - errors
+                title: UnprocessableEntityResponse
+                type: object
+                x-struct: null
+                x-validate: null
+          description: Unprocessable Entity
+      summary: Create an alert issue notification policy
+      tags:
+      - management
+  /api/alerts/notification_policies/{id}:
+    delete:
+      callbacks: {}
+      operationId: LogflareWeb.Api.AlertNotificationPolicyController.delete
+      parameters:
+      - description: Notification policy ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+          x-struct: null
+          x-validate: null
+      responses:
+        '204':
+          description: No Content
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct: null
+                    x-validate: null
+                required:
+                - error
+                title: NotFoundResponse
+                type: object
+                x-struct: null
+                x-validate: null
+          description: Not found
+      summary: Delete an alert issue notification policy
+      tags:
+      - management
+    get:
+      callbacks: {}
+      operationId: LogflareWeb.Api.AlertNotificationPolicyController.show
+      parameters:
+      - description: Notification policy ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+          x-struct: null
+          x-validate: null
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertNotificationPolicyApiSchema'
+          description: AlertNotificationPolicyApiSchema One Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct: null
+                    x-validate: null
+                required:
+                - error
+                title: NotFoundResponse
+                type: object
+                x-struct: null
+                x-validate: null
+          description: Not found
+      summary: Fetch an alert issue notification policy
+      tags:
+      - management
+    patch:
+      callbacks: {}
+      operationId: LogflareWeb.Api.AlertNotificationPolicyController.update (2)
+      parameters:
+      - description: Notification policy ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+          x-struct: null
+          x-validate: null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertNotificationPolicyApiParams'
+        description: AlertNotificationPolicyApiParams Parameters
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertNotificationPolicyApiSchema'
+          description: AlertNotificationPolicyApiSchema One Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct: null
+                    x-validate: null
+                required:
+                - error
+                title: NotFoundResponse
+                type: object
+                x-struct: null
+                x-validate: null
+          description: Not found
+        '422':
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: object
+                    x-struct: null
+                    x-validate: null
+                required:
+                - errors
+                title: UnprocessableEntityResponse
+                type: object
+                x-struct: null
+                x-validate: null
+          description: Unprocessable Entity
+      summary: Update an alert issue notification policy
+      tags:
+      - management
+    put:
+      callbacks: {}
+      operationId: LogflareWeb.Api.AlertNotificationPolicyController.update
+      parameters:
+      - description: Notification policy ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+          x-struct: null
+          x-validate: null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertNotificationPolicyApiParams'
+        description: AlertNotificationPolicyApiParams Parameters
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertNotificationPolicyApiSchema'
+          description: AlertNotificationPolicyApiSchema One Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    x-struct: null
+                    x-validate: null
+                required:
+                - error
+                title: NotFoundResponse
+                type: object
+                x-struct: null
+                x-validate: null
+          description: Not found
+        '422':
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: object
+                    x-struct: null
+                    x-validate: null
+                required:
+                - errors
+                title: UnprocessableEntityResponse
+                type: object
+                x-struct: null
+                x-validate: null
+          description: Unprocessable Entity
+      summary: Update an alert issue notification policy
+      tags:
+      - management
 security: []
 servers:
   - url: http://localhost:4000
